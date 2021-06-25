@@ -1,0 +1,8 @@
+- name: Ansible Pull Example
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Hello Ansible Pull
+      debug:
+        msg: "Hello Ansible Pull"
