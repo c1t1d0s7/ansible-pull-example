@@ -1,6 +1,6 @@
 ---
 - name: Ansible Pull Example
-  hosts: all
+  hosts: localhost
   connection: local
   gather_facts: false
 
