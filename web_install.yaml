@@ -1,0 +1,45 @@
+---
+- name: Install Apache Webserver
+  hosts: all
+  connection: local
+  become: true
+
+  tasks:
+    - name: Install Apache for RedHat
+      yum:
+        name: apache2
+        state: present
+      when: ansible_os_family == "RedHat"
+    - name: Install Apache for Debuan
+      apt:
+        name: httpd
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Enable/Start Service for RedHat
+      service:
+        name: apache2
+        state: started
+        enabled: true
+      when: ansible_os_family == "RedHat"
+    - name: Enable/Start Service for Debian
+      service:
+        name: httpd
+        state: started
+        enabled: true
+      when: ansible_os_family == "Debian"
+
+    - name: Create Web Contents
+      copy:
+        content: "<h1> Hello Ansible </h1>"
+        dest: /var/www/html/index.html
+
+    - name: Access Check
+      uri:
+        url: http://localhost
+
+
+
+
+     - name: Start/Enable Service
+
