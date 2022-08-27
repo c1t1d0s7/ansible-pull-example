@@ -1,5 +1,7 @@
+---
 - name: Ansible Pull Example
   hosts: all
+  connection: local
   gather_facts: false
 
   tasks:
